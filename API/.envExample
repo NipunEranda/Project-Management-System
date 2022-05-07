@@ -1,0 +1,13 @@
+DB_HOST=redacted
+DB_USER=redacted
+DB_PASSWORD=redacted
+DB_NAME=pmsredacted
+
+SERVER_HOST=redacted
+SERVER_PORT=redacted
+
+CRYPT_SECRET=redacted
+TOKEN_EXPIRE=redacted
+
+MAIL_USER=redacted
+MAIL_PASSWORD=redacted
