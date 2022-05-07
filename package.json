@@ -2,7 +2,7 @@
   "name": "pms",
   "version": "0.0.0",
   "scripts": {
-    "dev": "concurrently \"vite\" \"cd API && npm start\"",
+    "start": "concurrently \"vite\" \"cd API && npm start\"",
     "build": "vite build",
     "preview": "vite preview --port 5050"
   },
