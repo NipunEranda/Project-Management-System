@@ -10,6 +10,8 @@
   "author": "Nipun Amarasekara",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^7.2.0"
+    "axios": "^0.27.2",
+    "concurrently": "^7.2.0",
+    "vuex": "^4.0.2"
   }
 }

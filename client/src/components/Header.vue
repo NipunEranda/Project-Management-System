@@ -1,7 +1,11 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/"><span><img id="navIcon" src="../assets/logo.png" alt="PMS"></span></a>
+      <router-link activeClass="active" class="nav-link" to="/">
+        <span>
+          <img id="navIcon" src="../assets/logo.png" alt="PMS" />
+        </span>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,27 +19,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item" :class="{ active : setActiveItem('dashboard') }">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item" :class="{ active : setActiveItem('projects') }">
-            <a class="nav-link" href="/projects">Projects</a>
-          </li>
-          <li class="nav-item" :class="{ active : setActiveItem('issues') }">
-            <a class="nav-link" href="/issues">Issues</a>
-          </li>
+          <router-link activeClass="active" class="nav-link" to="/dashboard">Dashboard</router-link>
+          <router-link activeClass="active" class="nav-link" to="/projects">Projects</router-link>
+          <router-link activeClass="active" class="nav-link" to="/issues">Issues</router-link>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item" :class="{ active : setActiveItem('signUp') }">
-            <a class="nav-link" href="/signUp">SignUp</a>
-          </li>
-          <li class="nav-item" :class="{ active : setActiveItem('signIn') }">
-            <a class="nav-link" href="/signIn">SignIn</a>
-          </li>
-          <li class="nav-item" :class="{ active : setActiveItem('profile') }">
-            <a class="nav-link" href="/profile">Profile</a>
-          </li>
-          <li class="nav-item" :class="{ active : setActiveItem('logout') }">
+          <router-link activeClass="active" class="nav-link" to="/signUp">SignUp</router-link>
+          <router-link activeClass="active" class="nav-link" to="/signIn">SignIn</router-link>
+          <router-link activeClass="active" class="nav-link" to="/profile">Profile</router-link>
+          <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
         </ul>
@@ -46,17 +38,8 @@
 
 <script>
 export default {
-  data(){
-    return {
-
-    }
+  data() {
+    return {};
   },
-  methods: {
-    setActiveItem: function(item){
-      if(window.location.href.split('/')[window.location.href.split('/').length-1] == item){
-        return true;
-      }
-    }
-  }
-}
+};
 </script>
