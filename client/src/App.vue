@@ -1,12 +1,15 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <app-header />
+      <main>
+        <router-view/>
+      </main>
+    <app-footer />
+  </div>
 </template>
 
 <style>
+@import url("./assets/css/index.css");
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
