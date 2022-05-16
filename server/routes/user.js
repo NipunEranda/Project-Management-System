@@ -16,24 +16,27 @@ router.post('/login', async function(req, res) {
 });
 
 router.post('/register', async function(req, res) {
-    const result = await userService.registerUser(req, res);
-    res.status(result.code).json({ data: result.data, error: result.error });
+    userService.registerUser(req, res).then(result => {
+        res.status(result.code).json({ data: result.data, error: result.error });
+    }).catch(err => {
+        const result = helper.createResponse(500, null, err.message);
+        res.status(result.code).json({ data: result.data, error: result.error });
+    });
 });
 
-router.delete('/deleteUser', helper.verifyToken, async function(req, res) {
+router.delete('/delete/:id', helper.verifyToken, async function(req, res) {
     const data = helper.verifyUser(req, config.accessList.all);
     if (data) {
-        const result = await userService.removeUser(data.user.userId, res);
+        const result = await userService.removeUser(req.params.id, res);
         res.status(result.code).json({ data: result.data, error: result.error });
     } else {
         res.status(403).json({ data: "Access Denied", error: null });
     }
 });
 
-router.put('/updateUser', helper.verifyToken, async function(req, res) {
+router.put('/update/:id', helper.verifyToken, async function(req, res) {
     const data = helper.verifyUser(req, config.accessList.all);
     if (data) {
-        req.body.id = data.user.userId;
         const result = await userService.updateUser(req, res);
         res.status(result.code).json({ data: result.data, error: result.error });
     } else {
@@ -41,7 +44,7 @@ router.put('/updateUser', helper.verifyToken, async function(req, res) {
     }
 });
 
-router.put('/changePassword', helper.verifyToken, async function(req, res) {
+router.put('/changePassword/:id', helper.verifyToken, async function(req, res) {
     const data = helper.verifyUser(req, config.accessList.all);
     if (data) {
         const result = await userService.changeUserPassword(req, res);
@@ -52,16 +55,15 @@ router.put('/changePassword', helper.verifyToken, async function(req, res) {
     }
 });
 
-router.put('/forgotPassword', async function(req, res) {
-    const result = await userService.forgotUserPassword(req, res);
-    res.status(result.code).json({ data: result.data, error: result.error });
-});
+// router.put('/forgotPassword', async function(req, res) {
+//     const result = await userService.forgotUserPassword(req, res);
+//     res.status(result.code).json({ data: result.data, error: result.error });
+// });
 
-router.get('/', helper.verifyToken, async function(req, res) {
+router.get('/:id', helper.verifyToken, async function(req, res) {
     const data = helper.verifyUser(req, config.accessList.all);
     if (data) {
-        req.body.id = data.user.userId;
-        const result = await userService.getUserDetails(req.body.id, res);
+        const result = await userService.getUserDetails(req.params.id, res);
         res.status(result.code).json({ data: result.data, error: result.error });
     } else {
         res.status(403).json({ data: "Access Denied", error: null });

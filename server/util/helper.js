@@ -1,6 +1,12 @@
 const config = require('./config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
+
+//MYSQL Date
+function getCurrentDateTime(){
+    return moment().format('YYYY-MM-DD HH:mm:ss');
+}
 
 //Function to generate a random string to a given character count
 function generateString(length) {
@@ -19,7 +25,7 @@ const comparePassword = async function (password, hash, result) {
     try {
         if (await bcrypt.compare(password, hash)) {
             let data = {
-                userId: result.data.rows[0].userId,
+                userId: result.data.rows[0].id,
                 email: result.data.rows[0].email,
                 roleId: result.data.rows[0].roleId
             }
@@ -71,5 +77,6 @@ module.exports = {
     comparePassword,
     verifyToken,
     verifyUser,
-    createResponse
+    createResponse,
+    getCurrentDateTime
 };

@@ -1,7 +1,7 @@
 const syncsql = require('sync-sql');
 require('dotenv').config();
 const secret = process.env.pms_auth_secret;
-const tokenExpireAfter = '6';
+const tokenExpireAfter = '6h';
 const hostIP = process.env.pms_hostIP;
 const hostPORT = process.env.pms_hostPORT;
 const emailUser = process.env.pms_mail_user;
@@ -15,12 +15,21 @@ db = {
     multipleStatements: true
 };
 
+accessList = {
+    adminOnly : [1],
+    userOnly: [2],
+    developerOnly: [3],
+    SupervisorOnly: [4],
+    all : [1, 2, 3, 4]
+};
+
 //Exports list
 module.exports = {
     secret,
     tokenExpireAfter,
     hostIP,
     db,
+    accessList,
     hostPORT,
     emailUser,
     emailPw,

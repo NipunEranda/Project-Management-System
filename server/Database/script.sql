@@ -23,6 +23,6 @@ CREATE TABLE usr_User(
     isDelete BOOLEAN NOT NULL,
     createdAt DATE DEFAULT NULL,
     deletedAt DATE DEFAULT NULL,
-    CONSTRAINT usr_User_pk PRIMARY KEY(id),
+    CONSTRAINT usr_User_pk PRIMARY KEY(id, email),
     CONSTRAINT usr_User_fk_roleId FOREIGN KEY(roleId) REFERENCES usr_Role(id)
 );
