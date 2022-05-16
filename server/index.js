@@ -1,16 +1,15 @@
 const express = require('express');
-//const user = require('./routes/user');
+const user = require('./routes/user');
 const cors = require('cors');
 const app = express();
-const config = require('./utils/config');
+const config = require('./util/config');
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors());
 
 //Register /user route
-//app.use('/user', user)
-app.use('/', (req, res) => res.json({test: 'test'}))
+app.use('/user', user)
 
 //Initialization error handle
 app.use((err, res) => {
