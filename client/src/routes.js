@@ -5,10 +5,11 @@ import Issues from './views/Issues.vue';
 import SignUp from './views/Account/SignUp.vue';
 import SignIn from './views/Account/SignIn.vue';
 import Profile from './views/Account/Profile.vue';
+import Admin from './views/Admin/index.vue';
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: Home
     },
@@ -33,7 +34,7 @@ const routes = [
         component: SignUp
     },
     {
-        path: '/signIn',
+        path: '/',
         name: 'signIn',
         component: SignIn
     },
@@ -41,6 +42,10 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: Profile
+    },{
+        path: '/admin',
+        name: 'admin',
+        component: Admin
     }
 ];
 

@@ -3,8 +3,8 @@ import router from '../../router';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
-    ? { status: { loggedIn: true }, user }
-    : { status: {}, user: null };
+    ? { status: { loggedIn: true, isAdmin: false }, user }
+    : { status: { loggedIn: false, isAdmin: false }, user: null };
 
 const actions = {
     login({ dispatch, commit }, { username, password }) {
@@ -13,8 +13,8 @@ const actions = {
         userService.login(username, password)
             .then(
                 user => {
-                    commit('loginSuccess', user);
-                    router.push('/');
+                    commit('loginSuccess', user.data.token);
+                    router.push('/home');
                 },
                 error => {
                     commit('loginFailure', error);
@@ -25,6 +25,7 @@ const actions = {
     logout({ commit }) {
         userService.logout();
         commit('logout');
+        router.push('/');
     },
     register({ dispatch, commit }, user) {
         commit('registerRequest', user);
