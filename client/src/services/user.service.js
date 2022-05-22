@@ -20,19 +20,12 @@ function login(email, password) {
     return fetch(`http://localhost:8888/user/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            // login successful if there's a jwt token in the response
-            console.log(user);
-            if (user.data.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user.data.token));
-            }
             return user;
         });
 }
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
 }
 
 function register(user) {
@@ -90,7 +83,7 @@ function handleResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
+                //logout();
                 location.reload(true);
             }
 
