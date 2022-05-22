@@ -7,7 +7,7 @@ import { users } from './modules/users.module';
 
 const vuexPersist = new VuexPersist({
   key: 'pms-app',
-  storage: window.sessionStorage
+  storage: window.localStorage
 });
 
 export default createStore({

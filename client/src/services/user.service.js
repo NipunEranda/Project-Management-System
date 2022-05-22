@@ -25,7 +25,7 @@ function login(email, password) {
 }
 
 function logout() {
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
 }
 
 function register(user) {
